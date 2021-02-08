@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 use cpp::cpp;
 use std::os::raw::c_char;
 use std::ffi::CStr;
@@ -9,7 +10,7 @@ cpp!{{
 fn main() {
     let name0 = std::ffi::CString::new("Hello").unwrap();
     let name1 = std::ffi::CString::new("World").unwrap();
-    let size = 0 + 1;
+    let size = 2;
 
     let name_ptr0 = name0.as_ptr();
     let name_ptr1 = name1.as_ptr();
@@ -31,14 +32,13 @@ fn main() {
             }
         });
     }
-    let mut vec_string: Vec<String> = Vec::new();
-    for i in 0..2 {
+    let v_string: Vec<String> = (0..size).into_iter().map(|x| {
         let occurs: *const c_char = unsafe {
-            cpp!([double_ptr as "const char **", i as "int32_t"] -> *const c_char as "const char *" {
-                return double_ptr[i];
+            cpp!([double_ptr as "const char **", x as "int32_t"] -> *const c_char as "const char *" {
+                return double_ptr[x];
             })
         };
-        vec_string.push(unsafe { CStr::from_ptr(occurs).to_str().unwrap_or("???").to_string() });
-    }
-    println!("{:?}", vec_string.as_slice());
+        unsafe { CStr::from_ptr(occurs).to_str().unwrap_or("???").to_string() }
+    }).collect();
+    println!("{:?}", v_string.as_slice());
 }

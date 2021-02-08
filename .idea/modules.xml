@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DoublePointerCharTryWithRust.iml" filepath="$PROJECT_DIR$/.idea/DoublePointerCharTryWithRust.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../double_pointer_char_try_with_rust/.idea/DoublePointerCharTryWithRust.iml" filepath="$PROJECT_DIR$/../double_pointer_char_try_with_rust/.idea/DoublePointerCharTryWithRust.iml" />
     </modules>
   </component>
 </project>
